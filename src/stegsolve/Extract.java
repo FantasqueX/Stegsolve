@@ -6,9 +6,11 @@
 
 package stegsolve;
 
-import java.awt.image.*;
 import javax.swing.*;
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 
 /**
  * The data extraction form

@@ -6,13 +6,15 @@
 
 package stegsolve;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.*;
-import java.io.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.awt.event.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 // todo - sort out dimensions in linux
 // todo - width/height explorer
@@ -461,7 +463,7 @@ public class StegSolve extends JFrame
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StegSolve().setVisible(true);

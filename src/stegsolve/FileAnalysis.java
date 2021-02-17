@@ -6,7 +6,8 @@
 
 package stegsolve;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.zip.CRC32;
 
 /**

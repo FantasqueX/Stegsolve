@@ -4,13 +4,16 @@
 
 package stegsolve;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.*;
-import java.awt.event.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import javax.swing.filechooser.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 
 /**
  * Stereogram solver

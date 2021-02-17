@@ -4,7 +4,7 @@
 
 package stegsolve;
 
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Represents combination of two images

@@ -5,8 +5,8 @@
 package stegsolve;
 
 import javax.swing.*;
-import java.awt.image.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A JPanel with an image attached to it
