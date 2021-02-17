@@ -158,26 +158,14 @@ public class CombineTransform {
               b = ((c1&0xff) * (c2&0xff))&0xff;
               return r|g|b;
             case 9:
-              if((c1&0xff0000)>(c2&0xff0000))
-                  r=(c1&0xff0000);
-              else r=(c2&0xff0000);
-              if((c1&0xff00)>(c2&0xff00))
-                  g=(c1&0xff00);
-              else g=(c2&0xff00);
-              if((c1&0xff)>(c2&0xff))
-                  b=(c1&0xff);
-              else b=(c2&0xff);
+                r = Math.max((c1 & 0xff0000), (c2 & 0xff0000));
+                g = Math.max((c1 & 0xff00), (c2 & 0xff00));
+                b = Math.max((c1 & 0xff), (c2 & 0xff));
               return r|g|b;
             case 10:
-              if((c1&0xff0000)<(c2&0xff0000))
-                  r=(c1&0xff0000);
-              else r=(c2&0xff0000);
-              if((c1&0xff00)<(c2&0xff00))
-                  g=(c1&0xff00);
-              else g=(c2&0xff00);
-              if((c1&0xff)<(c2&0xff))
-                  b=(c1&0xff);
-              else b=(c2&0xff);
+                r = Math.min((c1 & 0xff0000), (c2 & 0xff0000));
+                g = Math.min((c1 & 0xff00), (c2 & 0xff00));
+                b = Math.min((c1 & 0xff), (c2 & 0xff));
               return r|g|b;
         }
         return 0;
@@ -189,36 +177,22 @@ public class CombineTransform {
      */
     public String getText()
     {
-        switch(transNum)
-        {
-            case 0:
-              return "XOR";
-            case 1:
-              return "OR";
-            case 2:
-              return "AND";
-            case 3:
-              return "ADD";
-            case 4:
-              return "ADD (R,G,B separate)";
-            case 5:
-              return "SUB";
-            case 6:
-              return "SUB (R,G,B separate)";
-            case 7:
-              return "MUL";
-            case 8:
-              return "MUL (R,G,B separate)";
-            case 9:
-              return "Lightest (R, G, B separate)";
-            case 10:
-              return "Darkest (R, G, B separate)";
-            case 11:
-              return "Horizontal Interlace";
-            case 12:
-              return "Vertical Interlace";
-        }
-        return "???";
+        return switch (transNum) {
+            case 0 -> "XOR";
+            case 1 -> "OR";
+            case 2 -> "AND";
+            case 3 -> "ADD";
+            case 4 -> "ADD (R,G,B separate)";
+            case 5 -> "SUB";
+            case 6 -> "SUB (R,G,B separate)";
+            case 7 -> "MUL";
+            case 8 -> "MUL (R,G,B separate)";
+            case 9 -> "Lightest (R, G, B separate)";
+            case 10 -> "Darkest (R, G, B separate)";
+            case 11 -> "Horizontal Interlace";
+            case 12 -> "Vertical Interlace";
+            default -> "???";
+        };
     }
 
     /**

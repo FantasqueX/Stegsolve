@@ -145,29 +145,17 @@ public class StegSolve extends JFrame
 
         fileOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, 0));
         fileOpen.setText("Open");
-        fileOpen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                fileOpenActionPerformed(evt);
-            }
-        });
+        fileOpen.addActionListener(this::fileOpenActionPerformed);
         menuFile.add(fileOpen);
 
         fileSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
         fileSave.setText("Save As");
-        fileSave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                fileSaveActionPerformed(evt);
-            }
-        });
+        fileSave.addActionListener(this::fileSaveActionPerformed);
         menuFile.add(fileSave);
 
         fileExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, 0));
         fileExit.setText("Exit");
-        fileExit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                fileExitActionPerformed(evt);
-            }
-        });
+        fileExit.addActionListener(this::fileExitActionPerformed);
         menuFile.add(fileExit);
 
         menuBar.add(menuFile);
@@ -175,43 +163,23 @@ public class StegSolve extends JFrame
         menuAnalyse.setText("Analyse");
 
         analyseFormat.setText("File Format");
-        analyseFormat.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                analyseFormatActionPerformed(evt);
-            }
-        });
+        analyseFormat.addActionListener(this::analyseFormatActionPerformed);
         menuAnalyse.add(analyseFormat);
 
         analyseExtract.setText("Data Extract");
-        analyseExtract.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                analyseExtractActionPerformed(evt);
-            }
-        });
+        analyseExtract.addActionListener(this::analyseExtractActionPerformed);
         menuAnalyse.add(analyseExtract);
 
         stereoSolve.setText("Stereogram Solver");
-        stereoSolve.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                stereoSolveActionPerformed(evt);
-            }
-        });
+        stereoSolve.addActionListener(this::stereoSolveActionPerformed);
         menuAnalyse.add(stereoSolve);
 
         frameBrowse.setText("Frame Browser");
-        frameBrowse.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                frameBrowseActionPerformed(evt);
-            }
-        });
+        frameBrowse.addActionListener(this::frameBrowseActionPerformed);
         menuAnalyse.add(frameBrowse);
 
         imageCombine.setText("Image Combiner");
-        imageCombine.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                imageCombineActionPerformed(evt);
-            }
-        });
+        imageCombine.addActionListener(this::imageCombineActionPerformed);
         menuAnalyse.add(imageCombine);
 
         menuBar.add(menuAnalyse);
@@ -219,11 +187,7 @@ public class StegSolve extends JFrame
         menuHelp.setText("Help");
 
         about.setText("About");
-        about.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                aboutActionPerformed(evt);
-            }
-        });
+        about.addActionListener(this::aboutActionPerformed);
         menuHelp.add(about);
 
         menuBar.add(menuHelp);
@@ -236,17 +200,9 @@ public class StegSolve extends JFrame
 
         buttonPanel = new JPanel();
         backwardButton = new JButton("<");
-        backwardButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backwardButtonActionPerformed(evt);
-            }
-        });
+        backwardButton.addActionListener(this::backwardButtonActionPerformed);
         forwardButton = new JButton(">");
-        forwardButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                forwardButtonActionPerformed(evt);
-            }
-        });
+        forwardButton.addActionListener(this::forwardButtonActionPerformed);
         buttonPanel.add(backwardButton);
         buttonPanel.add(forwardButton);
 
@@ -464,11 +420,7 @@ public class StegSolve extends JFrame
     * @param args the command line arguments
     */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StegSolve().setVisible(true);
-            }
-        });
+        EventQueue.invokeLater(() -> new StegSolve().setVisible(true));
     }
 
 }

@@ -124,10 +124,8 @@ public class Extract extends javax.swing.JFrame {
      */
     private void getBitOrderOptions()
     {
-        if(byRowButton.isSelected()) rowFirst = true;
-        else rowFirst = false;
-        if(LSBButton.isSelected()) lsbFirst = true;
-        else lsbFirst = false;
+        rowFirst = byRowButton.isSelected();
+        lsbFirst = LSBButton.isSelected();
         if(RGBButton.isSelected()) rgbOrder = 1;
         else if (RBGButton.isSelected()) rgbOrder = 2;
         else if (GRBButton.isSelected()) rgbOrder = 3;
@@ -224,38 +222,43 @@ public class Extract extends javax.swing.JFrame {
         else
         {
             extract8Bits(nextByte,1<<31);
-            switch(rgbOrder)
-            {
-                case 1: //rgb
-                    extract8Bits(nextByte,1<<23);
-                    extract8Bits(nextByte,1<<15);
-                    extract8Bits(nextByte,1<<7);
-                    break;
-                case 2: //rbg
-                    extract8Bits(nextByte,1<<23);
-                    extract8Bits(nextByte,1<<7);
-                    extract8Bits(nextByte,1<<15);
-                    break;
-                case 3: //grb
-                    extract8Bits(nextByte,1<<15);
-                    extract8Bits(nextByte,1<<23);
-                    extract8Bits(nextByte,1<<7);
-                    break;
-                case 4: //gbr
-                    extract8Bits(nextByte,1<<15);
-                    extract8Bits(nextByte,1<<7);
-                    extract8Bits(nextByte,1<<23);
-                    break;
-                case 5: //brg
-                    extract8Bits(nextByte,1<<7);
-                    extract8Bits(nextByte,1<<23);
-                    extract8Bits(nextByte,1<<15);
-                    break;
-                case 6: //bgr
-                    extract8Bits(nextByte,1<<7);
-                    extract8Bits(nextByte,1<<15);
-                    extract8Bits(nextByte,1<<23);
-                    break;
+            switch (rgbOrder) {
+//rgb
+                case 1 -> {
+                    extract8Bits(nextByte, 1 << 23);
+                    extract8Bits(nextByte, 1 << 15);
+                    extract8Bits(nextByte, 1 << 7);
+                }
+//rbg
+                case 2 -> {
+                    extract8Bits(nextByte, 1 << 23);
+                    extract8Bits(nextByte, 1 << 7);
+                    extract8Bits(nextByte, 1 << 15);
+                }
+//grb
+                case 3 -> {
+                    extract8Bits(nextByte, 1 << 15);
+                    extract8Bits(nextByte, 1 << 23);
+                    extract8Bits(nextByte, 1 << 7);
+                }
+//gbr
+                case 4 -> {
+                    extract8Bits(nextByte, 1 << 15);
+                    extract8Bits(nextByte, 1 << 7);
+                    extract8Bits(nextByte, 1 << 23);
+                }
+//brg
+                case 5 -> {
+                    extract8Bits(nextByte, 1 << 7);
+                    extract8Bits(nextByte, 1 << 23);
+                    extract8Bits(nextByte, 1 << 15);
+                }
+//bgr
+                case 6 -> {
+                    extract8Bits(nextByte, 1 << 7);
+                    extract8Bits(nextByte, 1 << 15);
+                    extract8Bits(nextByte, 1 << 23);
+                }
             }
         }
     }

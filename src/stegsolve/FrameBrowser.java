@@ -84,7 +84,7 @@ public class FrameBrowser extends JFrame
         initComponents();
         fnum = 0;
         numframes = 0;
-        frames = new ArrayList<BufferedImage>();
+        frames = new ArrayList<>();
         try
         {
             ImageInputStream ii = ImageIO.createImageInputStream(f);
@@ -127,23 +127,11 @@ public class FrameBrowser extends JFrame
 
         buttonPanel = new JPanel();
         backwardButton = new JButton("<");
-        backwardButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backwardButtonActionPerformed(evt);
-            }
-        });
+        backwardButton.addActionListener(this::backwardButtonActionPerformed);
         forwardButton = new JButton(">");
-        forwardButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                forwardButtonActionPerformed(evt);
-            }
-        });
+        forwardButton.addActionListener(this::forwardButtonActionPerformed);
         saveButton = new JButton("Save");
-        saveButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
+        saveButton.addActionListener(this::saveButtonActionPerformed);
         buttonPanel.add(backwardButton);
         buttonPanel.add(forwardButton);
         buttonPanel.add(saveButton);

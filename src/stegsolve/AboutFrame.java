@@ -37,11 +37,7 @@ public class AboutFrame extends javax.swing.JFrame {
 
         okButton.setText("OK");
         okButton.setAlignmentX(0.5F);
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(this::okButtonActionPerformed);
 
         aboutPanel.setPreferredSize(new java.awt.Dimension(450, 300));
 

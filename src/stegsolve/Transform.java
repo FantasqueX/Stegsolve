@@ -372,67 +372,23 @@ public class Transform {
      */
     public String getText()
     {
-        switch(transNum)
-        {
-            case 0:
-              return "Normal Image";
-            case 1:
-              return "Colour Inversion (Xor)";
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-              return "Alpha plane " + (9 - transNum);
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-              return "Red plane " + (17 - transNum);
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
-            case 23:
-            case 24:
-            case 25:
-              return "Green plane " + (25 - transNum);
-            case 26:
-            case 27:
-            case 28:
-            case 29:
-            case 30:
-            case 31:
-            case 32:
-            case 33:
-              return "Blue plane " + (33 - transNum);
-            case 34:
-              return "Full alpha";
-            case 35:
-              return "Full red";
-            case 36:
-              return "Full green";
-            case 37:
-              return "Full blue";
-            case 38:
-              return "Random colour map 1";
-            case 39:
-              return "Random colour map 2";
-            case 40:
-              return "Random colour map 3";
-            case 41:
-              return "Gray bits";
-            default:
-              return "";
-        }
+        return switch (transNum) {
+            case 0 -> "Normal Image";
+            case 1 -> "Colour Inversion (Xor)";
+            case 2, 3, 4, 5, 6, 7, 8, 9 -> "Alpha plane " + (9 - transNum);
+            case 10, 11, 12, 13, 14, 15, 16, 17 -> "Red plane " + (17 - transNum);
+            case 18, 19, 20, 21, 22, 23, 24, 25 -> "Green plane " + (25 - transNum);
+            case 26, 27, 28, 29, 30, 31, 32, 33 -> "Blue plane " + (33 - transNum);
+            case 34 -> "Full alpha";
+            case 35 -> "Full red";
+            case 36 -> "Full green";
+            case 37 -> "Full blue";
+            case 38 -> "Random colour map 1";
+            case 39 -> "Random colour map 2";
+            case 40 -> "Random colour map 3";
+            case 41 -> "Gray bits";
+            default -> "";
+        };
     }
 
     /**
