@@ -20,78 +20,14 @@ import java.io.File;
 
 /**
  * StegSolve
+ *
  * @author Caesum
  */
-public class StegSolve extends JFrame
-{
-    /**
-     * Menu option - about
-     */
-    private JMenuItem about;
-    /**
-     * Menu option - file exit
-     */
-    private JMenuItem fileExit;
-    /**
-     * Menu option - file save
-     */
-    private JMenuItem fileSave;
-    /**
-     * Menu option - file save
-     */
-    private JMenuItem fileOpen;
-    /**
-     * Menu option - analyse format
-     */
-    private JMenuItem analyseFormat;
-    /**
-     * Menu option - extract data
-     */
-    private JMenuItem analyseExtract;
-    /**
-     * Menu option - solve stereogram
-     */
-    private JMenuItem stereoSolve;
-    /**
-     * Menu option - frame browser
-     */
-    private JMenuItem frameBrowse;
-    /**
-     * Menu option - frame browser
-     */
-    private JMenuItem imageCombine;
-    /**
-     * Menu bar
-     */
-    private JMenuBar menuBar;
-    /**
-     * Sub menu - file
-     */
-    private JMenu menuFile;
-    /**
-     * Sub menu - analyse
-     */
-    private JMenu menuAnalyse;
-    /**
-     * Sub menu - help
-     */
-    private JMenu menuHelp;
+public class StegSolve extends JFrame {
     /**
      * label that shows the number of the frame currently being shown
      */
     private JLabel nowShowing;
-    /**
-     * panel for buttons
-     */
-    private JPanel buttonPanel;
-    /**
-     * Next frame button
-     */
-    private JButton forwardButton;
-    /**
-     * Previous frame button
-     */
-    private JButton backwardButton;
     /**
      * Panel with image on it
      */
@@ -114,28 +50,42 @@ public class StegSolve extends JFrame
      */
     private Transform transform = null;
 
-    /** Creates new form stegsolve */
-    public StegSolve()
-    {
+    /**
+     * Creates new form stegsolve
+     */
+    public StegSolve() {
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Initcomponents()">
     private void initComponents() {
 
-        menuBar = new JMenuBar();
-        menuFile = new JMenu();
-        fileOpen = new JMenuItem();
-        fileSave = new JMenuItem();
-        fileExit = new JMenuItem();
-        menuAnalyse = new JMenu();
-        analyseFormat = new JMenuItem();
-        analyseExtract = new JMenuItem();
-        stereoSolve = new JMenuItem();
-        frameBrowse = new JMenuItem();
-        imageCombine = new JMenuItem();
-        menuHelp = new JMenu();
-        about = new JMenuItem();
+
+        // Menu bar
+        JMenuBar menuBar = new JMenuBar();
+        // Sub menu - file
+        JMenu menuFile = new JMenu();
+        // Menu option - file save
+        JMenuItem fileOpen = new JMenuItem();
+        // Menu option - file save
+        JMenuItem fileSave = new JMenuItem();
+        // Menu option - file exit
+        JMenuItem fileExit = new JMenuItem();
+        // Sub menu - analyse
+        JMenu menuAnalyse = new JMenu();
+        // Menu option - analyse format
+        JMenuItem analyseFormat = new JMenuItem();
+        // Menu option - extract data
+        JMenuItem analyseExtract = new JMenuItem();
+        // Menu option - solve stereogram
+        JMenuItem stereoSolve = new JMenuItem();
+        // Menu option - frame browser
+        JMenuItem frameBrowse = new JMenuItem();
+        // Menu option - frame browser
+        JMenuItem imageCombine = new JMenuItem();
+        // Sub menu - help
+        JMenu menuHelp = new JMenu();
+        // Menu option - about
+        JMenuItem about = new JMenuItem();
         nowShowing = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -197,10 +147,13 @@ public class StegSolve extends JFrame
 
         this.add(nowShowing, BorderLayout.NORTH);
 
-        buttonPanel = new JPanel();
-        backwardButton = new JButton("<");
+        // panel for buttons
+        JPanel buttonPanel = new JPanel();
+        // Previous frame button
+        JButton backwardButton = new JButton("<");
         backwardButton.addActionListener(this::backwardButtonActionPerformed);
-        forwardButton = new JButton(">");
+        // Next frame button
+        JButton forwardButton = new JButton(">");
         forwardButton.addActionListener(this::forwardButtonActionPerformed);
         buttonPanel.add(backwardButton);
         buttonPanel.add(forwardButton);
@@ -211,19 +164,19 @@ public class StegSolve extends JFrame
         scrollPane = new JScrollPane(dp);
         add(scrollPane, BorderLayout.CENTER);
 
-        backwardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0), "back");
+        backwardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "back");
         backwardButton.getActionMap().put("back", backButtonPress);
-        forwardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0), "forward");
+        forwardButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "forward");
         forwardButton.getActionMap().put("forward", forwardButtonPress);
-        
+
         this.setTitle("StegSolve 1.3 by Caesum");
         this.setMaximumSize(getToolkit().getScreenSize());
         pack();
-        //setResizable(false);
-    }// </editor-fold>
+    }
 
     /**
      * Close the form on file exit
+     *
      * @param evt Event
      */
     private void fileExitActionPerformed(ActionEvent evt) {
@@ -233,18 +186,19 @@ public class StegSolve extends JFrame
     /**
      * This is used to map the left arrow key to the back button
      */
-    private Action backButtonPress = new AbstractAction()
-    {
-        public void actionPerformed(ActionEvent e)
-        { backwardButtonActionPerformed(e);}
+    private final Action backButtonPress = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            backwardButtonActionPerformed(e);
+        }
     };
 
     /**
      * Move back by one image
+     *
      * @param evt Event
      */
     private void backwardButtonActionPerformed(ActionEvent evt) {
-        if(transform == null) return;
+        if (transform == null) return;
         transform.back();
         updateImage();
     }
@@ -252,24 +206,26 @@ public class StegSolve extends JFrame
     /**
      * This is used to map the right arrow key to the forward button
      */
-    private Action forwardButtonPress = new AbstractAction()
-    {
-        public void actionPerformed(ActionEvent e)
-        { forwardButtonActionPerformed(e);}
+    private final Action forwardButtonPress = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            forwardButtonActionPerformed(e);
+        }
     };
 
     /**
      * Move forward by one image
+     *
      * @param evt Event
      */
     private void forwardButtonActionPerformed(ActionEvent evt) {
-        if(bi == null) return;
+        if (bi == null) return;
         transform.forward();
         updateImage();
     }
 
     /**
      * Show the help/about frame
+     *
      * @param evt Event
      */
     private void aboutActionPerformed(ActionEvent evt) {
@@ -278,6 +234,7 @@ public class StegSolve extends JFrame
 
     /**
      * Open the file format analyser
+     *
      * @param evt Event
      */
     private void analyseFormatActionPerformed(ActionEvent evt) {
@@ -286,6 +243,7 @@ public class StegSolve extends JFrame
 
     /**
      * Open the stereogram solver
+     *
      * @param evt Event
      */
     private void stereoSolveActionPerformed(ActionEvent evt) {
@@ -294,6 +252,7 @@ public class StegSolve extends JFrame
 
     /**
      * Open the frame browser
+     *
      * @param evt Event
      */
     private void frameBrowseActionPerformed(ActionEvent evt) {
@@ -302,6 +261,7 @@ public class StegSolve extends JFrame
 
     /**
      * Open the image combiner
+     *
      * @param evt Event
      */
     private void imageCombineActionPerformed(ActionEvent evt) {
@@ -311,24 +271,21 @@ public class StegSolve extends JFrame
         fileChooser.setDialogTitle("Select image to combine with");
         int rVal = fileChooser.showOpenDialog(this);
         System.setProperty("user.dir", fileChooser.getCurrentDirectory().getAbsolutePath());
-        if(rVal == JFileChooser.APPROVE_OPTION)
-        {
+        if (rVal == JFileChooser.APPROVE_OPTION) {
             sfile = fileChooser.getSelectedFile();
-            try
-            {
+            try {
                 BufferedImage bi2 = null;
                 bi2 = ImageIO.read(sfile);
                 new Combiner(bi, bi2).setVisible(true);
-            }
-            catch (Exception e)
-            {
-                JOptionPane.showMessageDialog(this, "Failed to load file: " +e.toString());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Failed to load file: " + e.toString());
             }
         }
     }
 
     /**
      * Open the data extractor
+     *
      * @param evt Event
      */
     private void analyseExtractActionPerformed(ActionEvent evt) {
@@ -337,35 +294,32 @@ public class StegSolve extends JFrame
 
     /**
      * Save the current transformed image
+     *
      * @param evt Event
      */
-    private void fileSaveActionPerformed(ActionEvent evt)
-    {
+    private void fileSaveActionPerformed(ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
         fileChooser.setSelectedFile(new File("solved.bmp"));
         int rVal = fileChooser.showSaveDialog(this);
         System.setProperty("user.dir", fileChooser.getCurrentDirectory().getAbsolutePath());
-        if(rVal == JFileChooser.APPROVE_OPTION)
-        {
+        if (rVal == JFileChooser.APPROVE_OPTION) {
             sfile = fileChooser.getSelectedFile();
-            try
-            {
+            try {
                 bi = transform.getImage();
-                int rns = sfile.getName().lastIndexOf(".")+1;
-                if(rns==0)
-                  ImageIO.write(bi, "bmp", sfile);
+                int rns = sfile.getName().lastIndexOf(".") + 1;
+                if (rns == 0)
+                    ImageIO.write(bi, "bmp", sfile);
                 else
-                  ImageIO.write(bi, sfile.getName().substring(rns), sfile);
-            }
-            catch (Exception e)
-            {
-                JOptionPane.showMessageDialog(this, "Failed to write file: "+e.toString());
+                    ImageIO.write(bi, sfile.getName().substring(rns), sfile);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Failed to write file: " + e.toString());
             }
         }
     }
 
     /**
      * Open a file
+     *
      * @param evt Event
      */
     private void fileOpenActionPerformed(ActionEvent evt) {
@@ -374,18 +328,14 @@ public class StegSolve extends JFrame
         fileChooser.setFileFilter(filter);
         int rVal = fileChooser.showOpenDialog(this);
         System.setProperty("user.dir", fileChooser.getCurrentDirectory().getAbsolutePath());
-        if(rVal == JFileChooser.APPROVE_OPTION)
-        {
+        if (rVal == JFileChooser.APPROVE_OPTION) {
             sfile = fileChooser.getSelectedFile();
-            try
-            {
+            try {
                 bi = ImageIO.read(sfile);
                 transform = new Transform(bi);
                 newImage();
-            }
-            catch (Exception e)
-            {
-                JOptionPane.showMessageDialog(this, "Failed to load file: " +e.toString());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Failed to load file: " + e.toString());
             }
         }
     }
@@ -393,12 +343,11 @@ public class StegSolve extends JFrame
     /**
      * Reset settings for a new image
      */
-    private void newImage()
-    {
+    private void newImage() {
         nowShowing.setText(transform.getText());
         dp.setImage(transform.getImage());
-        dp.setSize(transform.getImage().getWidth(),transform.getImage().getHeight());
-        dp.setPreferredSize(new Dimension(transform.getImage().getWidth(),transform.getImage().getHeight()));
+        dp.setSize(transform.getImage().getWidth(), transform.getImage().getHeight());
+        dp.setPreferredSize(new Dimension(transform.getImage().getWidth(), transform.getImage().getHeight()));
         this.setMaximumSize(getToolkit().getScreenSize());
         pack();
         scrollPane.revalidate();
@@ -408,16 +357,15 @@ public class StegSolve extends JFrame
     /**
      * Update the image being shown for new transform
      */
-    private void updateImage()
-    {
+    private void updateImage() {
         nowShowing.setText(transform.getText());
         dp.setImage(transform.getImage());
         repaint();
     }
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> new StegSolve().setVisible(true));
     }
