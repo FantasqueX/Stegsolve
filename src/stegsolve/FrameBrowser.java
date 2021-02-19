@@ -91,22 +91,16 @@ public class FrameBrowser extends JFrame {
 
         this.add(nowShowing, BorderLayout.NORTH);
 
-        /**
-         * Panel for the buttons
-         */
+        // Panel for the buttons
         JPanel buttonPanel = new JPanel();
-        /**
-         * Backward button
-         */
+        //Backward button
         JButton backwardButton = new JButton("<");
         backwardButton.addActionListener(this::backwardButtonActionPerformed);
 
         //Forward button
         JButton forwardButton = new JButton(">");
         forwardButton.addActionListener(this::forwardButtonActionPerformed);
-        /**
-         * Save button
-         */
+        // Save button
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(this::saveButtonActionPerformed);
         buttonPanel.add(backwardButton);
@@ -125,8 +119,7 @@ public class FrameBrowser extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         pack();
-    }// </editor-fold>
-
+    }
     /**
      * This is used to map the left arrow key to the back button
      */
