@@ -168,7 +168,7 @@ public class FrameBrowser extends JFrame {
     private void saveButtonActionPerformed(ActionEvent event) {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Images", "jpg", "gif", "png", "bmp");
+                "Images", "jpg", "gif", "png");
         fileChooser.setFileFilter(filter);
         fileChooser.setSelectedFile(new File("frame" + (fnum + 1) + ".png"));
         int rVal = fileChooser.showSaveDialog(this);
